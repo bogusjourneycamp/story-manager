@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: story-creator
+service: story-manager
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -63,12 +63,12 @@ functions:
     events:
       - http:
           path: create_story
-          method: put
-  fetch_story:
-    handler: fetch_story.fetch_story
+          method: post
+  get_story:
+    handler: get_story.get_story
     events:
       - http:
-          path: fetch_story
+          path: get_story
           method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
