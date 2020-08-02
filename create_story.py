@@ -1,6 +1,6 @@
 import boto3
 import json
-from tree.TreeValidator import TreeValidator
+from tree_validator import TreeValidator
 
 def create_story(event, context):
     if "body" not in event:

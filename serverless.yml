@@ -59,10 +59,16 @@ provider:
 
 functions:
   create_story:
-    handler: handler.create_story
+    handler: create_story.create_story
     events:
       - http:
           path: create_story
+          method: put
+  fetch_story:
+    handler: fetch_story.fetch_story
+    events:
+      - http:
+          path: fetch_story
           method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
