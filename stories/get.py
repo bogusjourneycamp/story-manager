@@ -1,6 +1,6 @@
 import boto3
 import json
-from location_validator import LocationValidator
+from stories.location_validator import LocationValidator
 
 def get(event, context):
     if "queryStringParameters" not in event:
