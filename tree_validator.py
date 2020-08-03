@@ -4,6 +4,7 @@ VALID = (True, "")
 NO_LOCATION_IN_ROOT = (False, "'location' not present in root")
 NO_NAME_IN_CHOICE = (False, "'name' not present in choice")
 NAME_NOT_STRING_IN_CHOICE = (False, "'name' not string in choice")
+NAME_TOO_LONG_IN_CHOICE = (False, "'name' more than 7 characters in choice")
 NO_TEXT_IN_CHOICE = (False, "'text' not present in choice")
 TEXT_NOT_STRING_IN_CHOICE = (False, "'text' not string in choice")
 NO_CHOICES_IN_CHOICE = (False, "'choices' not present in choice")
@@ -47,6 +48,8 @@ class TreeValidator():
             return NO_NAME_IN_CHOICE
         elif not isinstance(choice["name"], str):
             return NAME_NOT_STRING_IN_CHOICE
+        elif len(choice["name"]) > 7:
+            return NAME_TOO_LONG_IN_CHOICE
         else:
             return VALID
 
