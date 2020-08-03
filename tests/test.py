@@ -122,11 +122,22 @@ class TestTreeValidity(unittest.TestCase):
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_name_type), NAME_NOT_STRING_IN_CHOICE)
 
+  def test_invalid_name_length(self):
+    invalid_name_type = json.loads('''
+{ 
+  "location": "A_1:30",
+  "name": "borem snorem",
+  "text": "lorem ipsum",
+  "choices": []
+}
+    ''')
+    self.assertEqual(self.treeValidator.check_tree_validity(invalid_name_type), NAME_TOO_LONG_IN_CHOICE)
+
   def test_no_text(self):
     no_text = json.loads('''
 { 
   "location": "A_1:30",
-  "name": "lorem ipsum",
+  "name": "borem",
   "choices": []
 }
     ''')
@@ -136,7 +147,7 @@ class TestTreeValidity(unittest.TestCase):
     invalid_text_type = json.loads('''
 { 
   "location": "A_1:30",
-  "name": "boop snoop",
+  "name": "boop",
   "text": ["slip"],
   "choices": []
 }
@@ -147,7 +158,7 @@ class TestTreeValidity(unittest.TestCase):
     no_choices = json.loads('''
 { 
   "location": "A_1:30",
-  "name": "flounders",
+  "name": "flound",
   "text": "lorem ipsum"
 }
     ''')
