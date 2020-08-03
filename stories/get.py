@@ -3,16 +3,16 @@ import json
 from stories.location_validator import LocationValidator
 
 def get(event, context):
-    if "queryStringParameters" not in event:
+    if "pathParameters" not in event:
         return {
             "statusCode": 400,
-            "body": json.dumps("No queryStringParameters found in event")
+            "body": json.dumps("No pathParameters found in event")
         }
         
-    if "location" not in event["queryStringParameters"]:
+    if "location" not in event["pathParameters"]:
         return {
             "statusCode": 400,
-            "body": json.dumps("No location found in queryStringParameters")
+            "body": json.dumps("No location found in pathParameters")
         }
 
     location = event['pathParameters']["location"]
