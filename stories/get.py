@@ -1,8 +1,8 @@
 import boto3
 import json
-from location_validator import LocationValidator
+from stories.location_validator import LocationValidator
 
-def fetch_story(event, context):
+def get(event, context):
     if "queryStringParameters" not in event:
         return {
             "statusCode": 400,
@@ -15,8 +15,8 @@ def fetch_story(event, context):
             "body": json.dumps("No location found in queryStringParameters")
         }
 
-    location = event["queryStringParameters"]["location"]
-    
+    location = event['pathParameters']["location"]
+
     (is_valid_location, reason) = LocationValidator().check_location_validity(location)
 
     if not is_valid_location:

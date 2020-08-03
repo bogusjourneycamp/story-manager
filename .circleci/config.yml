@@ -11,6 +11,6 @@ jobs:
        - serverless/setup
        - run: sls deploy 
 workflows:
-  one_and_two:
+  deploy:
     jobs:
       - one

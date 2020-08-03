@@ -1,48 +1,26 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
 service: story-manager
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
+frameworkVersion: ">=1.1.0 <2.0.0"
 
 provider:
   name: aws
   runtime: python3.8
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 # you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
+stage: dev
+region: us-east-1
 
 # you can define service wide environment variables here
 #  environment:
@@ -58,18 +36,46 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  create_story:
-    handler: create_story.create_story
+  create:
+    handler: stories/create.create
     events:
       - http:
-          path: create_story
+          path: stories
           method: post
-  get_story:
-    handler: get_story.get_story
+          cors: true
+  
+  # list:
+  #   handler: stories/list.list
+  #   events:
+  #     - http:
+  #         path: stories
+  #         method: get
+  #         cors: true
+
+  get:
+    handler: stories/get.get
     events:
       - http:
-          path: get_story
+          path: stories/{location}
           method: get
+          cors: true
+  
+  # update:
+  #   handler: stories/update.update
+  #   events:
+  #     - http:
+  #         path: stories/{location}
+  #         method: put
+  #         cors: true
+
+  # delete:
+  #   handler: stories/delete.delete
+  #   events:
+  #     - http:
+  #         path: stories/{location}
+  #         method: delete
+  #         cors: true
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -110,14 +116,22 @@ functions:
 #    environment:
 #      variable2: value2
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+# CloudFormation resource template
+resources:
+  Resources:
+    StoryManagerDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: location
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: location
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}

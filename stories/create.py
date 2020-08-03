@@ -1,8 +1,8 @@
 import boto3
 import json
-from tree_validator import TreeValidator
+from stories.tree_validator import TreeValidator
 
-def create_story(event, context):
+def create(event, context):
     if "body" not in event:
         return {
             "statusCode": 400,
