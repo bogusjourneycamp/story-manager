@@ -37,42 +37,42 @@ region: us-east-1
 
 functions:
   create:
-    handler: stories/create.create
+    handler: story/create.create
     events:
       - http:
-          path: stories
+          path: story
           method: post
           cors: true
   
   # list:
-  #   handler: stories/list.list
+  #   handler: story/list.list
   #   events:
   #     - http:
-  #         path: stories
+  #         path: story
   #         method: get
   #         cors: true
 
   get:
-    handler: stories/get.get
+    handler: story/get.get
     events:
       - http:
-          path: stories/{location}
+          path: story/{location}
           method: get
           cors: true
   
   # update:
-  #   handler: stories/update.update
+  #   handler: story/update.update
   #   events:
   #     - http:
-  #         path: stories/{location}
+  #         path: story/{location}
   #         method: put
   #         cors: true
 
   # delete:
-  #   handler: stories/delete.delete
+  #   handler: story/delete.delete
   #   events:
   #     - http:
-  #         path: stories/{location}
+  #         path: story/{location}
   #         method: delete
   #         cors: true
 

@@ -1,6 +1,6 @@
 import boto3
 import json
-from stories.tree_validator import TreeValidator
+from story.tree_validator import TreeValidator
 
 def create(event, context):
     if "body" not in event:
@@ -19,8 +19,8 @@ def create(event, context):
             "body": json.dumps(f"Invalid body passed. Reason: {reason}")
         }
 
-    stories = boto3.resource('dynamodb').Table('Stories')
-    stories.put_item(Item=tree)
+    story_table = boto3.resource('dynamodb').Table('Stories')
+    story_table.put_item(Item=tree)
     
     return {
         "statusCode": 200

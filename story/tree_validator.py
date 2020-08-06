@@ -1,4 +1,4 @@
-from stories.location_validator import LocationValidator
+from story.location_validator import LocationValidator
 
 VALID = (True, "")
 NO_LOCATION_IN_ROOT = (False, "'location' not present in root")

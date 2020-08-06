@@ -1,6 +1,6 @@
 import boto3
 import json
-from stories.location_validator import LocationValidator
+from story.location_validator import LocationValidator
 
 def get(event, context):
     if "pathParameters" not in event:
@@ -25,8 +25,8 @@ def get(event, context):
             "body": json.dumps(f"Found improperly formatted location. Expecting url like /story?location=A_1:15. Reason: {reason}")
         }
 
-    stories = boto3.resource('dynamodb').Table('Stories')
-    story = stories.get_item(Key={"location": location}).get("Item", {})
+    story_table = boto3.resource('dynamodb').Table('Stories')
+    story = story_table.get_item(Key={"location": location}).get("Item", {})
     
     return {
         "statusCode": 200,
