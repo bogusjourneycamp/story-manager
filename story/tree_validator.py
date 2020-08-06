@@ -8,8 +8,9 @@ NAME_TOO_LONG_IN_CHOICE = (False, "'name' more than 7 characters in choice")
 NO_TEXT_IN_CHOICE = (False, "'text' not present in choice")
 TEXT_NOT_STRING_IN_CHOICE = (False, "'text' not string in choice")
 NO_CHOICES_IN_CHOICE = (False, "'choices' not present in choice")
-CHOICES_NOT_LIST_IN_CHOICE = (False, "'choices' not list in choice")
-MORE_THAN_THREE_CHOICES = (False, "More than three choices provided in choice") 
+CHOICES_NOT_DICT_IN_CHOICE = (False, "'choices' not dict in choice")
+MORE_THAN_THREE_CHOICES = (False, "More than three choices provided in choice")
+CHOICE_TEXT_NOT_STRING_IN_CHOICE = (False, "choice text not string in choice")
 
 class TreeValidator():
     def check_tree_validity(self, root):
@@ -64,13 +65,13 @@ class TreeValidator():
     def __check_choices_validity(self, choice):
         if "choices" not in choice:
             return NO_CHOICES_IN_CHOICE
-        elif not isinstance(choice["choices"], list):
-            return CHOICES_NOT_LIST_IN_CHOICE
+        elif not isinstance(choice["choices"], dict):
+            return CHOICES_NOT_DICT_IN_CHOICE
         elif len(choice["choices"]) > 3:
             return MORE_THAN_THREE_CHOICES
         else:
-            for choice in choice["choices"]:
-                (is_valid_choice, reason) = self.__check_choice_validity(choice)
+            for choiceText in choice["choices"]:
+                (is_valid_choice, reason) = self.__check_choice_validity(choice["choices"][choiceText])
                 if not is_valid_choice:
                     return (False, reason)
             return VALID

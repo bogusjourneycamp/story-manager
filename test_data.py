@@ -5,7 +5,7 @@ only_root = json.loads('''
   "location": "A_1:15",
   "name": "root",
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
 ''')
 
@@ -14,18 +14,18 @@ simple_tree = json.loads('''
   "location": "A_1:15",
   "name": "root",
   "text": "lorem ipsum",
-  "choices": [
-    {
+  "choices": {
+    "select me!": {
       "name": "boop",
       "text": "sloop",
-      "choices": []
+      "choices": {}
     },
-    {
+    "no, select me!": {
       "name": "snoop",
       "text": "gloop",
-      "choices": []
+      "choices": {}
     }
-  ]
+  }
 }
 ''')
 
@@ -34,101 +34,101 @@ complex_tree = json.loads('''
   "location": "A_1:15",
   "name": "root",
   "text": "lorem ipsum",
-  "choices": [
-    {
+  "choices": {
+    "boop central": {
       "name": "boop",
       "text": "sloop",
-      "choices": [
-        {
+      "choices": {
+        "blob factory": {
           "name": "blob",
           "text": "gandalf the wizard",
-          "choices": [
-            {
+          "choices": {
+            "hairy feet": {
               "name": "hobbit",
               "text": "short",
-              "choices": [
-                {
+              "choices": {
+                "hairy face": {
                   "name": "dwarf",
                   "text": "hairy",
-                  "choices": [
-                    {
+                  "choices": {
+                    "hairy head": {
                       "name": "elf",
                       "text": "pointy",
-                      "choices": [
-                        {
+                      "choices": {
+                        "hairy chest": {
                           "name": "orc",
                           "text": "smelly",
-                          "choices": [
-                            {
+                          "choices": {
+                            "hairy ears": {
                               "name": "human",
                               "text": "normy",
-                              "choices": []
+                              "choices": {}
                             }
-                          ]
+                          }
                         }
-                      ]
+                      }
                     }
-                  ]
+                  }
                 }
-              ]
+              }
             }
-          ]
+          }
         },
-        {
+        "goof central": {
           "name": "goof",
           "text": "spoof",
-          "choices": []
+          "choices": {}
         },
-        {
+        "rabbit central": {
           "name": "silly",
           "text": "rabbit",
-          "choices": [
-            {
+          "choices": {
+            "this one?": {
               "name": "tricks",
               "text": "yum",
-              "choices": []
+              "choices": {}
             },
-            {
+            "or this one?": {
               "name": "are for",
               "text": "bum",
-              "choices": []
+              "choices": {}
             },
-            {
+            "or maybe this one?": {
               "name": "kids",
               "text": "tum",
-              "choices": []
+              "choices": {}
             }
-          ]
+          }
         }
-      ]
+      }
     },
-    {
+    "snoopy?": {
       "name": "snoop",
       "text": "gloop",
-      "choices": []
+      "choices": {}
     },
-    {
+    "flippy?": {
       "name": "flop",
       "text": "bop",
-      "choices": [
-        {
+      "choices": {
+        "groobly": {
           "name": "groob",
           "text": "snoob",
-          "choices": []
+          "choices": {}
         },
-        {
+        "toobly": {
           "name": "tube",
           "text": "scooby doo",
-          "choices": [
-            {
+          "choices": {
+            "Warthur": {
               "name": "Arthur",
               "text": "the rabbit",
-              "choices": []
+              "choices": {}
             }
-          ]
+          }
         }
-      ]
+      }
     }
-  ]
+  }
 }
 ''')

@@ -84,7 +84,7 @@ class TestTreeValidity(unittest.TestCase):
 { 
   "name": "root",
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(no_loc), NO_LOCATION_IN_ROOT)
@@ -96,7 +96,7 @@ class TestTreeValidity(unittest.TestCase):
   "location": "bad",
   "name": "root",
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_loc), UNDERSCORE_COUNT_OFF)
@@ -106,7 +106,7 @@ class TestTreeValidity(unittest.TestCase):
 { 
   "location": "A_1:30",
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(no_name), NO_NAME_IN_CHOICE)
@@ -117,7 +117,7 @@ class TestTreeValidity(unittest.TestCase):
   "location": "A_1:30",
   "name": 123,
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_name_type), NAME_NOT_STRING_IN_CHOICE)
@@ -128,7 +128,7 @@ class TestTreeValidity(unittest.TestCase):
   "location": "A_1:30",
   "name": "borem snorem",
   "text": "lorem ipsum",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_name_type), NAME_TOO_LONG_IN_CHOICE)
@@ -138,7 +138,7 @@ class TestTreeValidity(unittest.TestCase):
 { 
   "location": "A_1:30",
   "name": "borem",
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(no_text), NO_TEXT_IN_CHOICE)
@@ -149,7 +149,7 @@ class TestTreeValidity(unittest.TestCase):
   "location": "A_1:30",
   "name": "boop",
   "text": ["slip"],
-  "choices": []
+  "choices": {}
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_text_type), TEXT_NOT_STRING_IN_CHOICE)
@@ -173,7 +173,7 @@ class TestTreeValidity(unittest.TestCase):
   "choices": "silly rabbit"
 }
     ''')
-    self.assertEqual(self.treeValidator.check_tree_validity(invalid_choice_type), CHOICES_NOT_LIST_IN_CHOICE)
+    self.assertEqual(self.treeValidator.check_tree_validity(invalid_choice_type), CHOICES_NOT_DICT_IN_CHOICE)
 
   def test_too_many_choices(self): # This test is like life
     too_many_choices = json.loads('''
@@ -181,28 +181,28 @@ class TestTreeValidity(unittest.TestCase):
   "location": "A_1:30",
   "name": "fun!",
   "text": "lorem ipsum",
-  "choices": [
-    {
+  "choices": {
+    "z": {
       "name": "1",
       "text": "a",
-      "choices": []
+      "choices": {}
     },
-    {
+    "y": {
       "name": "2",
       "text": "b",
-      "choices": []
+      "choices": {}
     },
-    {
+    "x": {
       "name": "3",
       "text": "c",
-      "choices": []
+      "choices": {}
     },
-    {
+    "w": {
       "name": "4",
       "text": "sad",
-      "choices": []
+      "choices": {}
     }
-  ]
+  }
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(too_many_choices), MORE_THAN_THREE_CHOICES)
@@ -213,12 +213,12 @@ class TestTreeValidity(unittest.TestCase):
   "location": "A_1:30",
   "name": "goober",
   "text": "floop",
-  "choices": [
-    {
+  "choices": {
+    "hobnopper": {
       "text": "gobstopper",
-      "choices": []
+      "choices": {}
     }
-  ]
+  }
 }
     ''')
     self.assertEqual(self.treeValidator.check_tree_validity(invalid_nested_choice), NO_NAME_IN_CHOICE)
