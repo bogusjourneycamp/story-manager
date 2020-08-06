@@ -1,6 +1,6 @@
 import json
-from location_validator import *
-from tree_validator import *
+from story.location_validator import *
+from story.tree_validator import *
 from string import ascii_uppercase
 import test_data
 import unittest
