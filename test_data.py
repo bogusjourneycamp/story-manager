@@ -2,133 +2,177 @@ import json
 
 only_root = json.loads('''
 {
+  "id": "a",
   "location": "A_1:15",
   "name": "root",
-  "text": "lorem ipsum",
-  "choices": {}
+  "selectionText": "",
+  "storyText": "lorem ipsum",
+  "choices": []
 }
 ''')
 
 simple_tree = json.loads('''
 {
+  "id": "b",
   "location": "A_1:15",
   "name": "root",
-  "text": "lorem ipsum",
-  "choices": {
-    "select me!": {
+  "selectionText": "",
+  "storyText": "lorem ipsum",
+  "choices": [
+    {
+      "id": "c",
       "name": "boop",
-      "text": "sloop",
-      "choices": {}
+      "selectionText": "select me!",
+      "storyText": "sloop",
+      "choices": []
     },
-    "no, select me!": {
+    {
+      "id": "e",
       "name": "snoop",
-      "text": "gloop",
-      "choices": {}
+      "selectionText": "no, select me!",
+      "storyText": "gloop",
+      "choices": []
     }
-  }
+  ]
 }
 ''')
 
 complex_tree = json.loads('''
 {
+  "id": "f",
   "location": "A_1:15",
   "name": "root",
-  "text": "lorem ipsum",
-  "choices": {
-    "boop central": {
+  "selectionText": "",
+  "storyText": "lorem ipsum",
+  "choices": [
+    {
+      "id": "g",
       "name": "boop",
-      "text": "sloop",
-      "choices": {
-        "blob factory": {
+      "selectionText": "boop central",
+      "storyText": "sloop",
+      "choices": [
+        {
+          "id": "h",
           "name": "blob",
-          "text": "gandalf the wizard",
-          "choices": {
-            "hairy feet": {
+          "selectionText": "blob factory",
+          "storyText": "gandalf the wizard",
+          "choices": [
+            {
+              "id": "i",
               "name": "hobbit",
-              "text": "short",
-              "choices": {
-                "hairy face": {
+              "selectionText": "hairy feet",
+              "storyText": "short",
+              "choices": [
+                {
+                  "id": "j",
                   "name": "dwarf",
-                  "text": "hairy",
-                  "choices": {
-                    "hairy head": {
+                  "selectionText": "hairy face",
+                  "storyText": "hairy",
+                  "choices": [
+                    {
+                      "id": "k",
                       "name": "elf",
-                      "text": "pointy",
-                      "choices": {
-                        "hairy chest": {
+                      "selectionText": "hairy head",
+                      "storyText": "pointy",
+                      "choices": [
+                        {
+                          "id": "l",
                           "name": "orc",
-                          "text": "smelly",
-                          "choices": {
-                            "hairy ears": {
+                          "selectionText": "hairy chest",
+                          "storyText": "smelly",
+                          "choices": [
+                            {
+                              "id": "m",
                               "name": "human",
-                              "text": "normy",
-                              "choices": {}
+                              "selectionText": "hairy ears",
+                              "storyText": "normy",
+                              "choices": []
                             }
-                          }
+                          ]
                         }
-                      }
+                      ]
                     }
-                  }
+                  ]
                 }
-              }
+              ]
             }
-          }
+          ]
         },
-        "goof central": {
+        {
+          "id": "n",
           "name": "goof",
-          "text": "spoof",
-          "choices": {}
+          "selectionText": "goof central",
+          "storyText": "spoof",
+          "choices": []
         },
-        "rabbit central": {
+        {
+          "id": "o",
           "name": "silly",
-          "text": "rabbit",
-          "choices": {
-            "this one?": {
+          "selectionText": "rabbit central",
+          "storyText": "rabbit",
+          "choices": [
+            {
+              "id": "p",
               "name": "tricks",
-              "text": "yum",
-              "choices": {}
+              "selectionText": "this one?",
+              "storyText": "yum",
+              "choices": []
             },
-            "or this one?": {
+            {
+              "id": "q",
               "name": "are for",
-              "text": "bum",
-              "choices": {}
+              "selectionText": "or this one?",
+              "storyText": "bum",
+              "choices": []
             },
-            "or maybe this one?": {
+            {
+              "id": "r",
               "name": "kids",
-              "text": "tum",
-              "choices": {}
+              "selectionText": "or maybe this one?",
+              "storyText": "tum",
+              "choices": []
             }
-          }
+          ]
         }
-      }
+      ]
     },
-    "snoopy?": {
+    {
+      "id": "s",
       "name": "snoop",
-      "text": "gloop",
-      "choices": {}
+      "selectionText": "snoopy?",
+      "storyText": "gloop",
+      "choices": []
     },
-    "flippy?": {
+    {
+      "id": "t",
       "name": "flop",
-      "text": "bop",
-      "choices": {
-        "groobly": {
+      "selectionText": "flippy?",
+      "storyText": "bop",
+      "choices": [
+        {
+          "id": "u",
           "name": "groob",
-          "text": "snoob",
-          "choices": {}
+          "selectionText": "groobly",
+          "storyText": "snoob",
+          "choices": []
         },
-        "toobly": {
+        {
+          "id": "v",
           "name": "tube",
-          "text": "scooby doo",
-          "choices": {
-            "Warthur": {
+          "selectionText": "toobly",
+          "storyText": "scooby doo",
+          "choices": [
+            {
+              "id": "w",
               "name": "Arthur",
-              "text": "the rabbit",
-              "choices": {}
+              "selectionText": "Warthur",
+              "storyText": "the rabbit",
+              "choices": []
             }
-          }
+          ]
         }
-      }
+      ]
     }
-  }
+  ]
 }
 ''')
