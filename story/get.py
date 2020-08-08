@@ -25,7 +25,7 @@ def get(event, context):
             "body": json.dumps(f"Found improperly formatted location. Expecting url like /story?location=A_1:15. Reason: {reason}")
         }
 
-    story_table = boto3.resource('dynamodb').Table('Stories')
+    story_table = boto3.resource('dynamodb').Table('story-manager-dev')
     story = story_table.get_item(Key={"location": location}).get("Item", {})
     
     return {

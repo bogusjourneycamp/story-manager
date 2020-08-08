@@ -19,7 +19,7 @@ def create(event, context):
             "body": json.dumps(f"Invalid body passed. Reason: {reason}")
         }
 
-    story_table = boto3.resource('dynamodb').Table('Stories')
+    story_table = boto3.resource('dynamodb').Table('story-manager-dev')
     story_table.put_item(Item=tree)
     
     return {
