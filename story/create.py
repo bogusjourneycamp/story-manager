@@ -23,5 +23,10 @@ def create(event, context):
     story_table.put_item(Item=tree)
     
     return {
-        "statusCode": 200
+        "statusCode": 200,
+        "headers": {
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Origin": "https://nervous-blackwell-595d82.netlify.app/",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        }
     }
