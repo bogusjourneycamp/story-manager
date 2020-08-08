@@ -6,7 +6,8 @@ COLON_COUNT_OFF = (False, "Too many or too few colons")
 INVALID_HOUR = (False, "Invalid hour")
 INVALID_MINUTE = (False, "Invalid minutes")
 
-class LocationValidator():
+
+class LocationValidator:
     def check_location_validity(self, location):
         # Handle 'Man' special case
         if location == "Man":
@@ -39,7 +40,7 @@ class LocationValidator():
             return NOT_UPPER
         else:
             return VALID
-    
+
     def __check_time_validity(self, time):
         time_list = time.split(":")
         if len(time_list) != 2:

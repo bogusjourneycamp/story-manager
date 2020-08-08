@@ -1,6 +1,7 @@
 import json
 
-only_root = json.loads('''
+only_root = json.loads(
+    """
 {
   "id": "a",
   "location": "A_1:15",
@@ -9,9 +10,11 @@ only_root = json.loads('''
   "storyText": "lorem ipsum",
   "choices": []
 }
-''')
+"""
+)
 
-simple_tree = json.loads('''
+simple_tree = json.loads(
+    """
 {
   "id": "b",
   "location": "A_1:15",
@@ -35,9 +38,11 @@ simple_tree = json.loads('''
     }
   ]
 }
-''')
+"""
+)
 
-complex_tree = json.loads('''
+complex_tree = json.loads(
+    """
 {
   "id": "f",
   "location": "A_1:15",
@@ -175,4 +180,5 @@ complex_tree = json.loads('''
     }
   ]
 }
-''')
+"""
+)

@@ -16,7 +16,8 @@ CHOICES_NOT_LIST_IN_CHOICE = (False, "'choices' not list in choice")
 MORE_THAN_THREE_CHOICES = (False, "More than three choices provided in choice")
 CHOICE_TEXT_NOT_STRING_IN_CHOICE = (False, "choice text not string in choice")
 
-class TreeValidator():
+
+class TreeValidator:
     def check_tree_validity(self, root):
         return self.__check_root_validity(root)
 
@@ -24,9 +25,12 @@ class TreeValidator():
         if "location" not in root:
             return NO_LOCATION_IN_ROOT
 
-        (is_location_valid, location_reason) = LocationValidator().check_location_validity(root["location"])
+        (
+            is_location_valid,
+            location_reason,
+        ) = LocationValidator().check_location_validity(root["location"])
         (is_choice_valid, choice_reason) = self.__check_choice_validity(root)
-    
+
         if not is_location_valid:
             return (False, location_reason)
         elif not is_choice_valid:
@@ -37,7 +41,10 @@ class TreeValidator():
     def __check_choice_validity(self, choice):
         (is_id_valid, id_reason) = self.__check_id_validity(choice)
         (is_name_valid, name_reason) = self.__check_name_validity(choice)
-        (is_selectiontext_valid, selectiontext_reason) = self.__check_selectiontext_validity(choice)
+        (
+            is_selectiontext_valid,
+            selectiontext_reason,
+        ) = self.__check_selectiontext_validity(choice)
         (is_storytext_valid, storytext_reason) = self.__check_storytext_validity(choice)
         (is_choices_valid, choices_reason) = self.__check_choices_validity(choice)
 
@@ -93,7 +100,7 @@ class TreeValidator():
             return NO_CHOICES_IN_CHOICE
         elif not isinstance(choice["choices"], list):
             return CHOICES_NOT_LIST_IN_CHOICE
-        #elif len(choice["choices"]) > 3: not enforcing this now - might later
+        # elif len(choice["choices"]) > 3: not enforcing this now - might later
         #    return MORE_THAN_THREE_CHOICES
         else:
             for choice in choice["choices"]:

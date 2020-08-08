@@ -14,7 +14,7 @@ def create(event, context):
     if not is_valid:
         return response(f"Invalid body passed. Reason: {reason}", 400)
 
-    story_table = boto3.resource('dynamodb').Table('story-manager-dev')
+    story_table = boto3.resource("dynamodb").Table("story-manager-dev")
     story_table.put_item(Item=tree)
 
     return response("", 200)
