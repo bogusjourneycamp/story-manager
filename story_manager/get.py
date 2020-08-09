@@ -1,6 +1,6 @@
 import boto3
-from story.location_validator import LocationValidator
-from story.response import response
+from story_manager.location_validator import LocationValidator
+from story_manager.response import response
 
 
 def get(event, context):
@@ -12,7 +12,8 @@ def get(event, context):
 
     location = event["pathParameters"]["location"]
 
-    (is_valid_location, reason) = LocationValidator().check_location_validity(location)
+    (is_valid_location, reason) = LocationValidator(
+    ).check_location_validity(location)
 
     if not is_valid_location:
         return response(
