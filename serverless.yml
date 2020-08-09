@@ -33,13 +33,13 @@ provider:
 
 functions:
   create:
-    handler: story/create.create
+    handler: story_manager/create.create
     events:
       - http:
           path: story
           method: post
           cors: true
-  
+
   # list:
   #   handler: story/list.list
   #   events:
@@ -49,13 +49,13 @@ functions:
   #         cors: true
 
   get:
-    handler: story/get.get
+    handler: story_manager/get.get
     events:
       - http:
           path: story/{location}
           method: get
           cors: true
-  
+
   # update:
   #   handler: story/update.update
   #   events:
@@ -63,7 +63,6 @@ functions:
   #         path: story/{location}
   #         method: put
   #         cors: true
-
   # delete:
   #   handler: story/delete.delete
   #   events:
@@ -116,16 +115,14 @@ functions:
 resources:
   Resources:
     StoryManagerDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
+      Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: location
+          - AttributeName: location
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: location
+          - AttributeName: location
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

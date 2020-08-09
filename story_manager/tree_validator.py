@@ -1,6 +1,7 @@
-from story.location_validator import LocationValidator
+from story_manager.location_validator import LocationValidator
 
 VALID = (True, "")
+UNDERSCORE_COUNT_OFF = (False, "Too many or too few underscores")
 NO_LOCATION_IN_ROOT = (False, "'location' not present in root")
 NO_ID_IN_CHOICE = (False, "'id' not present in choice")
 ID_NOT_STRING_IN_CHOICE = (False, "'id' not string in choice")
