@@ -1,8 +1,8 @@
 import json
 
 import boto3
-from story.response import response
-from story.tree_validator import TreeValidator
+from story_manager.response import response
+from story_manager.tree_validator import TreeValidator
 
 
 def create(event, context):
