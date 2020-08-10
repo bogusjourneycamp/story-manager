@@ -1,8 +1,9 @@
 import json
 
 import boto3
-from story_manager.response import response
-from story_manager.tree_validator import TreeValidator
+from utils.response import response
+from utils.tree_validator import TreeValidator
+from utils.diceware import generate_passphrase
 
 
 def create(event, context):
@@ -15,8 +16,10 @@ def create(event, context):
 
     if not is_valid:
         return response(f"Invalid body passed. Reason: {reason}", 400)
+    
+    tree['passphrase'] = generate_passphrase(4)
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
     story_table.put_item(Item=tree)
 
-    return response("", 200)
+    return response(tree['passphrase'], 200)

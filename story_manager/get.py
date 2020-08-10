@@ -1,6 +1,6 @@
 import boto3
-from story_manager.location_validator import LocationValidator
-from story_manager.response import response
+from utils.location_validator import LocationValidator
+from utils.response import response
 
 
 def get(event, context):

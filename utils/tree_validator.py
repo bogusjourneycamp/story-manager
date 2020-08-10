@@ -1,4 +1,4 @@
-from story_manager.location_validator import LocationValidator
+from utils.location_validator import LocationValidator
 
 VALID = (True, "")
 UNDERSCORE_COUNT_OFF = (False, "Too many or too few underscores")

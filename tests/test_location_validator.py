@@ -1,7 +1,7 @@
 import unittest
 from string import ascii_uppercase
 
-from story_manager.location_validator import (COLON_COUNT_OFF, INVALID_HOUR,
+from utils.location_validator import (COLON_COUNT_OFF, INVALID_HOUR,
                                               INVALID_MINUTE, LETTER_COUNT_OFF,
                                               NOT_UPPER, UNDERSCORE_COUNT_OFF,
                                               VALID, LocationValidator)

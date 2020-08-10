@@ -2,7 +2,7 @@ import json
 import unittest
 from string import ascii_uppercase
 
-from story_manager.tree_validator import (CHOICE_TEXT_NOT_STRING_IN_CHOICE,
+from utils.tree_validator import (CHOICE_TEXT_NOT_STRING_IN_CHOICE,
                                           CHOICES_NOT_LIST_IN_CHOICE,
                                           ID_NOT_STRING_IN_CHOICE,
                                           MORE_THAN_THREE_CHOICES,
