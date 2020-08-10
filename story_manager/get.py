@@ -1,12 +1,6 @@
 import boto3
-<<<<<<< HEAD
 from utils.location_validator import LocationValidator
 from utils.response import response
-=======
-import random
-from story_manager.location_validator import LocationValidator
-from story_manager.response import response
->>>>>>> master
 
 
 def get(event, context):
