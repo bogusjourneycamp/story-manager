@@ -54,6 +54,20 @@ class TestLocationValidity(unittest.TestCase):
             UNDERSCORE_COUNT_OFF,
         )
 
+    def test_invalid_random(self):
+        self.assertEqual(
+            self.locationValidator.check_location_validity(
+                "random"), UNDERSCORE_COUNT_OFF
+        )
+        self.assertEqual(
+            self.locationValidator.check_location_validity(
+                "RANDOM"), UNDERSCORE_COUNT_OFF
+        )
+        self.assertEqual(
+            self.locationValidator.check_location_validity("Randomly"),
+            UNDERSCORE_COUNT_OFF,
+        )
+
     def test_invalid_esplanade(self):
         self.assertEqual(
             self.locationValidator.check_location_validity("esplanade_12:00"),

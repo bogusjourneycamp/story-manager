@@ -1,6 +1,12 @@
 import boto3
+<<<<<<< HEAD
 from utils.location_validator import LocationValidator
 from utils.response import response
+=======
+import random
+from story_manager.location_validator import LocationValidator
+from story_manager.response import response
+>>>>>>> master
 
 
 def get(event, context):
@@ -22,6 +28,17 @@ def get(event, context):
         )
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
+
+    if location.lower() == "random":
+        # Using ExpressionAttributeNames #loc in place of location as it is a 
+        # reserved keyword and cannot be used as a ProjectionExpression
+        scan_kwargs = {
+            "ExpressionAttributeNames": {"#loc": "location"},
+            "ProjectionExpression": "#loc"
+        }
+        story_locations = story_table.scan(**scan_kwargs).get('Items', [])
+        location = random.choice(story_locations)['location']
+
     story = story_table.get_item(Key={"location": location}).get("Item", {})
 
     return response(story, 200)

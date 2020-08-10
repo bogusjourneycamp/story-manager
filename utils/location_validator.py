@@ -10,7 +10,7 @@ INVALID_MINUTE = (False, "Invalid minutes")
 class LocationValidator:
     def check_location_validity(self, location):
         # Handle 'Man' special case
-        if location == "Man":
+        if location == "Man" or location == "Random":
             return VALID
 
         letter_and_time = location.split("_")
