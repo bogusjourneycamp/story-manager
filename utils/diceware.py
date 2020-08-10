@@ -4,7 +4,6 @@ dictionary of words with the five digit roll (from 111111 to 666666) as
 the key.
 """
 
-import argparse
 import csv
 
 
