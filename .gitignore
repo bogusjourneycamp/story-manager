@@ -130,3 +130,6 @@ dmypy.json
 
 # Serverless directories
 .serverless
+
+# Mac thumbnail
+.DS_Store
