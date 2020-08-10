@@ -1,9 +1,10 @@
 import json
 
 import boto3
+
+from utils.diceware import generate_passphrase
 from utils.response import response
 from utils.tree_validator import TreeValidator
-from utils.diceware import generate_passphrase
 
 
 def create(event, context):

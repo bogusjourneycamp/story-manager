@@ -2,22 +2,20 @@ import json
 import unittest
 from string import ascii_uppercase
 
-from utils.tree_validator import (CHOICE_TEXT_NOT_STRING_IN_CHOICE,
-                                          CHOICES_NOT_LIST_IN_CHOICE,
-                                          ID_NOT_STRING_IN_CHOICE,
-                                          MORE_THAN_THREE_CHOICES,
-                                          NAME_NOT_STRING_IN_CHOICE,
-                                          NAME_TOO_LONG_IN_CHOICE,
-                                          NO_CHOICES_IN_CHOICE,
-                                          NO_ID_IN_CHOICE, NO_LOCATION_IN_ROOT,
-                                          NO_NAME_IN_CHOICE,
-                                          NO_SELECTIONTEXT_IN_CHOICE,
-                                          NO_STORYTEXT_IN_CHOICE,
-                                          SELECTIONTEXT_NOT_STRING_IN_CHOICE,
-                                          STORYTEXT_NOT_STRING_IN_CHOICE,
-                                          UNDERSCORE_COUNT_OFF, VALID,
-                                          TreeValidator)
 from tests import test_data
+from utils.tree_validator import (CHOICE_TEXT_NOT_STRING_IN_CHOICE,
+                                  CHOICES_NOT_LIST_IN_CHOICE,
+                                  ID_NOT_STRING_IN_CHOICE,
+                                  MORE_THAN_THREE_CHOICES,
+                                  NAME_NOT_STRING_IN_CHOICE,
+                                  NAME_TOO_LONG_IN_CHOICE,
+                                  NO_CHOICES_IN_CHOICE, NO_ID_IN_CHOICE,
+                                  NO_LOCATION_IN_ROOT, NO_NAME_IN_CHOICE,
+                                  NO_SELECTIONTEXT_IN_CHOICE,
+                                  NO_STORYTEXT_IN_CHOICE,
+                                  SELECTIONTEXT_NOT_STRING_IN_CHOICE,
+                                  STORYTEXT_NOT_STRING_IN_CHOICE,
+                                  UNDERSCORE_COUNT_OFF, VALID, TreeValidator)
 
 
 class TestTreeValidity(unittest.TestCase):

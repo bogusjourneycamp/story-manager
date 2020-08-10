@@ -1,4 +1,5 @@
 import json
+
 from story_manager import __version__
 
 
