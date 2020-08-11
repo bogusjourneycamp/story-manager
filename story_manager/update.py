@@ -27,7 +27,7 @@ def create(event, context):
         & Key("passphrase").eq(tree["passphrase"]),
     )
 
-    if not len(response["Items"]):
+    if len(response["Items"]) == 0:
         return response(f"Unable to find story or validate passphrase to edit at location: {tree['location']}", 400)
 
     story_table.put_item(Item=tree)
