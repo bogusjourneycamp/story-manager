@@ -11,16 +11,18 @@ def create(event, context):
     if "body" not in event:
         return response("No body passed in event", 400)
 
-    tree = json.loads(event["body"])
+    story_tree = json.loads(event["body"])
 
-    (is_valid, reason) = TreeValidator().check_tree_validity(tree)
+    (is_valid, reason) = TreeValidator().check_tree_validity(story_tree)
 
     if not is_valid:
         return response(f"Invalid body passed. Reason: {reason}", 400)
-    
-    tree['passphrase'] = generate_passphrase(4)
+
+    story_tree["passphrase"] = generate_passphrase(4)
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
-    story_table.put_item(Item=tree)
+    story_table.put_item(
+        Item=story_tree, ConditionExpression="attribute_not_exists(location)"
+    )
 
-    return response(tree['passphrase'], 200)
+    return response(story_tree["passphrase"], 200)

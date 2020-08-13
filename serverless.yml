@@ -56,13 +56,14 @@ functions:
           method: get
           cors: true
 
-  # update:
-  #   handler: story/update.update
-  #   events:
-  #     - http:
-  #         path: story/{location}
-  #         method: put
-  #         cors: true
+  update:
+    handler: story/update.update
+    events:
+      - http:
+          path: story/{location}
+          method: put
+          cors: true
+
   # delete:
   #   handler: story/delete.delete
   #   events:
