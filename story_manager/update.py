@@ -7,7 +7,7 @@ from utils.response import response
 from utils.tree_validator import TreeValidator
 
 
-def create(event, context):
+def update(event, context):
     if "body" not in event:
         return response("No body passed in event", 400)
 
