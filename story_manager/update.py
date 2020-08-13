@@ -23,13 +23,13 @@ def update(event, context):
     response = story_table.query(
         ProjectionExpression="#loc, passphrase",
         ExpressionAttributeNames={"#loc": "location"},
-        KeyConditionExpression=Key("location").eq(tree["location"])
-        & Key("passphrase").eq(tree["passphrase"]),
+        KeyConditionExpression=Key("location").eq(story_tree["location"])
+        & Key("passphrase").eq(story_tree["passphrase"]),
     )
 
     if len(response["Items"]) == 0:
-        return response(f"Unable to find story or validate passphrase to edit at location: {tree['location']}", 400)
+        return response(f"Unable to find story or validate passphrase to edit at location: {story_tree['location']}", 400)
 
-    story_table.put_item(Item=tree)
+    story_table.put_item(Item=story_tree)
 
-    return response("Successfully updated story at location: {tree['location']}", 200)
+    return response("Successfully updated story at location: {story_tree['location']}", 200)
