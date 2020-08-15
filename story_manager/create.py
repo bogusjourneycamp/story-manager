@@ -29,7 +29,7 @@ def create(event, context):
         KeyConditionExpression=Key("location").eq(story_tree["location"])
     )
 
-    if len(res["Items"]) != 0
+    if len(res["Items"]) != 0:
         print("Found existing item")
         return response("Used create endpoint - should have used update", 400)
 
