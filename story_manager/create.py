@@ -23,6 +23,8 @@ def create(event, context):
 
     print("Valid body")
 
+    story_table = boto3.resource("dynamodb").Table("story-manager-dev")
+
     res = story_table.query(
         ProjectionExpression="#loc",
         ExpressionAttributeNames={"#loc": "location"},
@@ -35,7 +37,6 @@ def create(event, context):
 
     story_tree["passphrase"] = generate_passphrase(4)
 
-    story_table = boto3.resource("dynamodb").Table("story-manager-dev")
     story_table.put_item(Item=story_tree)
 
     return response(story_tree["passphrase"], 200)
