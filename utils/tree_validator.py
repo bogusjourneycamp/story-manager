@@ -24,7 +24,7 @@ class TreeValidator:
 
     def __check_root_validity(self, root):
         if "location" not in root:
-            return NO_LOCATION_IN_ROOT
+            return (False, f"test: {root}")
 
         (
             is_location_valid,
