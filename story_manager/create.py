@@ -1,6 +1,7 @@
 import json
 
 import boto3
+from boto3.dynamodb.conditions import Key
 
 from utils.diceware import generate_passphrase
 from utils.response import response
