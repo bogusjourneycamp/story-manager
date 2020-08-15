@@ -23,14 +23,19 @@ def create(event, context):
 
     print("Valid body")
 
+    res = story_table.query(
+        ProjectionExpression="#loc",
+        ExpressionAttributeNames={"#loc": "location"},
+        KeyConditionExpression=Key("location").eq(story_tree["location"])
+    )
+
+    if len(res["Items"] != 0)
+        print("Found existing item")
+        return response("Used create endpoint - should have used update", 400)
+
     story_tree["passphrase"] = generate_passphrase(4)
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
-    story_table.put_item(
-        Item=story_tree,
-        ProjectionExpression="#loc",
-        ExpressionAttributeNames={"#loc": "location"},
-        ConditionExpression="attribute_not_exists(location)"
-    )
+    story_table.put_item(Item=story_tree)
 
     return response(story_tree["passphrase"], 200)
