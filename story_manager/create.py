@@ -28,6 +28,7 @@ def create(event, context):
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
     story_table.put_item(
         Item=story_tree,
+        ProjectionExpression="#loc",
         ExpressionAttributeNames={"#loc": "location"},
         ConditionExpression="attribute_not_exists(location)"
     )
