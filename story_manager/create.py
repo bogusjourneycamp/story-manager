@@ -22,7 +22,9 @@ def create(event, context):
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
     story_table.put_item(
-        Item=story_tree, ConditionExpression="attribute_not_exists(location)"
+        Item=story_tree,
+        ExpressionAttributeNames={"#nam": "name", "#loc": "location"},
+        ConditionExpression="attribute_not_exists(location)"
     )
 
     return response(story_tree["passphrase"], 200)
