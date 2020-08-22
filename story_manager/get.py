@@ -38,6 +38,8 @@ def get(event, context):
 
     story = story_table.get_item(Key={"location": location}).get("Item", {})
 
+    print(story)
+
     storyWithoutPassphrase = story.pop("passphrase")
 
     return response(story, 200)
