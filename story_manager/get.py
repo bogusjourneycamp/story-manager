@@ -41,7 +41,6 @@ def get(event, context):
     print(story)
 
     if "passphrase" in story:
-        storyWithoutPassphrase = story.pop("passphrase")
-        return response(storyWithoutPassphrase, 200)
+        story.pop("passphrase")
 
     return response(story, 200)
