@@ -40,7 +40,7 @@ def check_passphrase(event, context):
     res = story_table.query(
         ProjectionExpression="#loc",
         ExpressionAttributeNames={"#loc": "location"},
-        KeyConditionExpression=Key("location").eq(story_tree["location"])
+        KeyConditionExpression=Key("location").eq(location)
     )
 
     if len(res["Items"]) == 0:
