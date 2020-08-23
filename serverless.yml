@@ -64,6 +64,14 @@ functions:
           method: put
           cors: true
 
+  check_passphrase:
+    handler: story/check_passphrase.check_passphrase
+    events:
+      - http:
+          path: story/check_passphrase/{location}
+          method: post
+          cors: true
+
   # delete:
   #   handler: story/delete.delete
   #   events:
