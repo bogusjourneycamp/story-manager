@@ -49,6 +49,8 @@ def check_passphrase(event, context):
 
     found_story = res["Items"][0]
 
+    print(found_story)
+
     if "passphrase" in found_story:
         print("Found passphrase, returning if same")
         return response(found_story["passphrase"] == passed_pasphrase, 200)
