@@ -39,6 +39,7 @@ def check_passphrase(event, context):
 
     res = story_table.query(
         ProjectionExpression="#loc",
+        Select="ALL_ATTRIBUTES",
         ExpressionAttributeNames={"#loc": "location"},
         KeyConditionExpression=Key("location").eq(location)
     )
