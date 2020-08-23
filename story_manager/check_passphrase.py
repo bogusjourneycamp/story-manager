@@ -33,7 +33,7 @@ def check_passphrase(event, context):
     if "passphrase" not in event["body"]:
         return response("No passphrase passed", 400)
 
-    passed_passphrase = json.loads(event["body"]["passphrase"])
+    passed_passphrase = json.loads(event["body"])["passphrase"]
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
 
