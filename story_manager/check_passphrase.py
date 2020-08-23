@@ -23,7 +23,7 @@ def check_passphrase(event, context):
 
     if not is_valid_location:
         return response(
-            f"Found improperly formatted location. Expecting url like /story/A_1:15. Reason: {reason}",
+            f"Found improperly formatted location. Expecting url like /story/check_passphrase/A_1:15. Reason: {reason}",
             400,
         )
 
@@ -37,7 +37,11 @@ def check_passphrase(event, context):
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
 
+    print(location)
+
     found_story = story_table.get_item(Key={"location": location}).get("Item", {})
+
+    print(found_story)
 
     if not bool(found_story) == 0:
         print("No item found - no password required!")
