@@ -43,7 +43,7 @@ def check_passphrase(event, context):
 
     print(found_story)
 
-    if not bool(found_story) == 0:
+    if found_story == {}:
         print("No item found - no password required!")
         return response(True, 200) # If no story here, no password necessary
 
