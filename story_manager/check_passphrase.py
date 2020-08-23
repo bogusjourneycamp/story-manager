@@ -37,20 +37,11 @@ def check_passphrase(event, context):
 
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
 
-    res = story_table.query(
-        ProjectionExpression="#loc",
-        Select="ALL_ATTRIBUTES",
-        ExpressionAttributeNames={"#loc": "location"},
-        KeyConditionExpression=Key("location").eq(location)
-    )
+    found_story = story_table.get_item(Key={"location": location}).get("Item", {})
 
-    if len(res["Items"]) == 0:
+    if not bool(found_story) == 0:
         print("No item found - no password required!")
         return response(True, 200) # If no story here, no password necessary
-
-    found_story = res["Items"][0]
-
-    print(found_story)
 
     if "passphrase" in found_story:
         print("Found passphrase, returning if same")
