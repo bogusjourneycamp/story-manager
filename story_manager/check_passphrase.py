@@ -44,11 +44,14 @@ def check_passphrase(event, context):
     )
 
     if len(res["Items"]) == 0:
+        print("No item found - no password required!")
         return response(True, 200) # If no story here, no password necessary
 
     found_story = res["Items"][0]
 
     if "passphrase" in found_story:
+        print("Found passphrase, returning if same")
         return response(found_story["passphrase"] == passed_pasphrase, 200)
     else:
+        print("Found no passphrase in item - break open")
         return response(True, 200) # If no passphrase value, assume it's the correct password
