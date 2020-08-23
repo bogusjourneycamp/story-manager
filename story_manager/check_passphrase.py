@@ -4,6 +4,7 @@ import boto3
 from boto3.dynamodb.conditions import Key
 
 from utils.location_validator import LocationValidator
+from utils.response import response
 
 
 def check_passphrase(event, context):
