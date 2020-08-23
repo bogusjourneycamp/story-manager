@@ -49,7 +49,7 @@ def check_passphrase(event, context):
 
     if "passphrase" in found_story:
         print("Found passphrase, returning if same")
-        return response(found_story["passphrase"] == passed_pasphrase, 200)
+        return response(found_story["passphrase"] == passed_passphrase, 200)
     else:
         print("Found no passphrase in item - break open")
         return response(True, 200) # If no passphrase value, assume it's the correct password
