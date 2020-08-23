@@ -56,14 +56,6 @@ functions:
           method: get
           cors: true
 
-  update:
-    handler: story/update.update
-    events:
-      - http:
-          path: story/{location}
-          method: put
-          cors: true
-
   check_passphrase:
     handler: story/check_passphrase.check_passphrase
     events:

@@ -32,11 +32,15 @@ def create(event, context):
         KeyConditionExpression=Key("location").eq(story_tree["location"])
     )
 
-    if len(res["Items"]) != 0:
-        print("Found existing item")
-        return response("Used create endpoint - should have used update", 400)
-
-    story_tree["passphrase"] = generate_passphrase(4)
+    if len(res["Items"]) == 0:
+        print("Found no existing item")
+        story_tree["passphrase"] = generate_passphrase(4)
+    else:
+        print("Found existing item - validating passphrase")
+        found_story = res["Items"][0]
+        if "passphrase" in found_story: # Just accept update if no passphrase in database
+            if story_tree["passphrase"] != found_story["passphrase"]:
+                return response("Incorrect passphrase for update", 400)
 
     story_table.put_item(Item=story_tree)
 
