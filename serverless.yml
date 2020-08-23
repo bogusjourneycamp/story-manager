@@ -57,7 +57,7 @@ functions:
           cors: true
 
   check_passphrase:
-    handler: story/check_passphrase.check_passphrase
+    handler: story_manager/check_passphrase.check_passphrase
     events:
       - http:
           path: story/check_passphrase/{location}
