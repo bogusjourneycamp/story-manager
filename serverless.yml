@@ -64,6 +64,14 @@ functions:
           method: post
           cors: true
 
+  wander:
+    handler: story_manager/wander.wander
+    events:
+      - http:
+          path: story/wander
+          method: get
+          cors: true
+
   # delete:
   #   handler: story/delete.delete
   #   events:
