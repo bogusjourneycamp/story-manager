@@ -15,6 +15,6 @@ def wander(event, context):
         ExpressionAttributeNames={"#loc": "location"}
     )["Items"]
 
-    choice = random.choice(itemKeys)
+    choice = random.choice(items)
 
     return response(choice["location"], 200)
