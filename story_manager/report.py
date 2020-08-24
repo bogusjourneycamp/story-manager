@@ -70,6 +70,7 @@ def report(event, context):
         )
     except ClientError as e:
         print(e.res['Error']['Message'])
+        return response("ClientError, error message: %s" % (e.res['Error']['Message']))
     else:
         print("Email sent! Message ID:"),
         print(res['MessageId'])
