@@ -52,7 +52,7 @@ def report(event, context):
     try:
         response = client.send_email(
             Destination={
-                'ToAddress':[
+                'ToAddresses':[
                     RECIPIENT
                 ],
             },
@@ -72,7 +72,7 @@ def report(event, context):
                     'Data': SUBJECT,
                 },
             },
-            SOURCE=SENDER,
+            Source=SENDER,
         )
     except ClientError as e:
         print(e.response['Error']['Message'])
