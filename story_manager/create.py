@@ -38,9 +38,14 @@ def create(event, context):
     else:
         print("Found existing item - validating passphrase")
         found_story = res["Items"][0]
+        print(f"Found story: {found_story}")
         if "passphrase" in found_story: # Just accept update if no passphrase in database
+            print("Passphrase in found story")
             if story_tree["passphrase"] != found_story["passphrase"]:
+                print("Passed passphrase incorrect")
                 return response("Incorrect passphrase for update", 400)
+
+    print(f"All valid, inputting story tree: {story_tree}")
 
     story_table.put_item(Item=story_tree)
 
