@@ -47,6 +47,13 @@ functions:
   #         path: story
   #         method: get
   #         cors: true
+  report:
+    handler: story_manager/report.report
+    events:
+      - http:
+          path: story/{location}/report
+          method: post
+          cors: true
 
   get:
     handler: story_manager/get.get
