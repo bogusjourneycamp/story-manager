@@ -30,7 +30,7 @@ def report(event, context):
     
     client = boto3.client('ses')
     SENDER = "scott.snelgrove1@gmail.com"
-    RECIPIENT = "charliesummers@gmail.com"
+    RECIPIENT = "scott.snelgrove1@gmail.com"
     # AWS_REGION = "us-west-2"
     SUBJECT = "Location: %s Reported" % (location)
     CHARSET = "UTF-8"
