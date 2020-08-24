@@ -44,7 +44,7 @@ def report(event, context):
     </html>
                 """ % (location, json.dumps(report_info, sort_keys=True, indent=4, separators=(',',': ')))
     try:
-        response = client.send_email(
+        res = client.send_email(
             Destination={
                 'ToAddresses':[
                     RECIPIENT
@@ -69,8 +69,8 @@ def report(event, context):
             Source=SENDER,
         )
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        print(e.res['Error']['Message'])
     else:
         print("Email sent! Message ID:"),
-        print(response['MessageId'])
+        print(res['MessageId'])
         return response("Successfully Reported Story", 200)
