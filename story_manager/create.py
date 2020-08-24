@@ -27,7 +27,7 @@ def create(event, context):
     story_table = boto3.resource("dynamodb").Table("story-manager-dev")
 
     res = story_table.query(
-        ProjectionExpression="#loc",
+        ProjectionExpression="#loc, passphrase",
         ExpressionAttributeNames={"#loc": "location"},
         KeyConditionExpression=Key("location").eq(story_tree["location"])
     )
