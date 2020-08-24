@@ -73,3 +73,4 @@ def report(event, context):
     else:
         print("Email sent! Message ID:"),
         print(response['MessageId'])
+        return response("Successfully Reported Story", 200)
